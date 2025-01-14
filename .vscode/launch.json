@@ -25,7 +25,9 @@
       "args": [
         "--profile"
       ],
-      "env": {}
+      "env": {
+        "RENDER": "true"
+      }
     },
     {
       "name": "Run App (release)",
@@ -35,10 +37,11 @@
       "flutterMode": "release",
       "cwd": "${workspaceFolder}",
       "args": [
-        "--release",
-        "--dart-define-from-file=config/development.json",
+        "--release"
       ],
-      "env": {}
+      "env": {
+        "RENDER": "true"
+      }
     }
   ]
 }
