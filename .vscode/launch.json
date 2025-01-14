@@ -1,0 +1,42 @@
+{
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Run App (debug)",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "request": "launch",
+      "flutterMode": "debug",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--debug"
+      ],
+      "env": {}
+    },
+    {
+      "name": "Run App (profile)",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "request": "launch",
+      "flutterMode": "profile",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--profile"
+      ],
+      "env": {}
+    },
+    {
+      "name": "Run App (release)",
+      "type": "dart",
+      "program": "lib/main.dart",
+      "request": "launch",
+      "flutterMode": "release",
+      "cwd": "${workspaceFolder}",
+      "args": [
+        "--release",
+        "--dart-define-from-file=config/development.json",
+      ],
+      "env": {}
+    }
+  ]
+}
