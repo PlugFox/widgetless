@@ -35,6 +35,8 @@ void main() => l.capture<void>(
               ..handleBeginFrame(clock.elapsed)
               ..handleDrawFrame();
             for (final view in dispatcher.views) render(view);
+            // TODO(plugfox): Make it possible to render at a fixed frame rate.
+            // Mike Matiunin <plugfox@gmail.com>, 14 January 2025
             await Future<void>.delayed(const Duration(milliseconds: 16)); // Rate limit to 60 FPS.
             frames++;
           }
@@ -60,6 +62,8 @@ Object _messageFormatting(LogMessage log) => '${_timeFormat(log.timestamp)} | ${
 /// Formats the time.
 String _timeFormat(DateTime time) => '${time.hour}:${time.minute.toString().padLeft(2, '0')}';
 
+// TODO(plugfox): Pass the delta time and frame number to the paint method.
+// Mike Matiunin <plugfox@gmail.com>, 14 January 2025
 void render(ui.FlutterView view) {
   // Получаем информацию о размерах экрана
   final windowSize = view.physicalSize;
