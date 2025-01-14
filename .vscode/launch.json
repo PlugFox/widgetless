@@ -11,7 +11,9 @@
       "args": [
         "--debug"
       ],
-      "env": {}
+      "env": {
+        "RENDER": "true"
+      }
     },
     {
       "name": "Run App (profile)",

@@ -83,6 +83,7 @@ linter:
     avoid_escaping_inner_quotes: false
     curly_braces_in_flow_control_structures: false
     one_member_abstracts: false
+    prefer_foreach: false
 
     # Enabled
     use_named_constants: true
@@ -134,7 +135,6 @@ linter:
     prefer_constructors_over_static_methods: true
     prefer_expression_function_bodies: true
     prefer_final_in_for_each: true
-    prefer_foreach: true
     prefer_if_elements_to_conditional_expressions: true
     prefer_inlined_adds: true
     prefer_int_literals: true
