@@ -2,9 +2,9 @@
 # PROJECT METADATA
 # ==============================================================================
 
-name: roadmap
+name: widgetless
 
-description: "Flutter Developer Roadmap"
+description: "Flutter Widget-less"
 
 publish_to: 'none'
 
@@ -43,12 +43,12 @@ version: 0.0.1+1
 # ==============================================================================
 
 # https://dart.dev/tools/pub/workspaces
-workspace:
-  - packages/ui
+#workspace:
+#  - packages/ui
 
 
-executables:
-  - tool/roadmap.dart
+#executables:
+#  - tool/roadmap.dart
 
 
 # ==============================================================================
@@ -64,16 +64,8 @@ dependencies:
   flutter:
     sdk: flutter
 
-  #flutter_web_plugins:
-  #  sdk: flutter
-
-  # Localization
-  #flutter_localizations:
-  #  sdk: flutter
-  intl: any
-
-  # Routing
-  #octopus: ^0.0.9
+  # Logger
+  l: ^5.0.0
 
   # Annotation
   #json_annotation: ^4.9.0
@@ -86,30 +78,8 @@ dependencies:
   convert: any
   path_provider: ^2.1.4
   platform_info: ^5.0.0
-  #multiline: ^3.0.0
-  rxdart: ^0.28.0
-  url_launcher: ^6.3.1
-  vector_math: ^2.1.4
-
-  # Logger
-  l: ^5.0.0
-
-  # Transport and serialization
-  #flat_buffers: ^23.5.26
-  protobuf: ^3.1.0
-
-  # Web
-  web: ^1.1.0
-
-  # Desktop
-  win32: ^5.10.0
-  window_manager: ^0.4.3
-
-  # State management
-  control: ^0.2.0
 
   # Database
-  shared_preferences: ^2.3.5
   #drift: ^2.23.0
   #sqlite3_flutter_libs: ^0.5.28
 
@@ -118,17 +88,6 @@ dependencies:
   #dio: ^5.4.2+1
   #dio_smart_retry: ^6.0.0
 
-  # Shared models
-  shared:
-    path: ./packages/shared
-
-  # UI and Widgets
-  cupertino_icons: ^1.0.8
-  #google_fonts: ^6.2.1
-  #font_awesome_flutter: ^10.7.0
-  ui:
-    path: ./packages/ui
-  repaint: ^0.0.7+1
 
 dev_dependencies:
   # Unit & Widget tests for Flutter
@@ -138,9 +97,6 @@ dev_dependencies:
   integration_test:
     sdk: flutter
 
-  # Roadmap generation
-  yaml: ^3.1.3
-
   # Linting
   flutter_lints: ^5.0.0
 
@@ -148,15 +104,15 @@ dev_dependencies:
   test: any
 
   # Code generation
-  build_runner: ^2.4.13
+  #build_runner: ^2.4.13
   #drift_dev: ^2.23.0
-  pubspec_generator: ^4.1.0-pre.1
-  flutter_gen_runner: ^5.8.0
+  #pubspec_generator: ^4.1.0-pre.1
+  #flutter_gen_runner: ^5.8.0
   #json_serializable: ^6.8.0
   # dart run flutter_launcher_icons -f flutter_launcher_icons.yaml
-  flutter_launcher_icons: ^0.14.1
+  #flutter_launcher_icons: ^0.14.1
   # dart run flutter_native_splash:create --path=flutter_native_splash.yaml
-  flutter_native_splash: ^2.4.1
+  #flutter_native_splash: ^2.4.1
 
 
 # ==============================================================================
@@ -165,18 +121,7 @@ dev_dependencies:
 
 flutter:
   generate: false
-  uses-material-design: true
-
-  shaders:
-    - packages/ui/shaders/shimmer.frag
-
-  assets:
-    # Various icons
-    - assets/icons/
-    # Roadmap atlas sprite
-    - assets/roadmap/atlas.webp
-    # Binary data of the whole roadmap
-    - assets/roadmap/roadmap.bin
+  uses-material-design: false
 
 
 #flutter_intl:
