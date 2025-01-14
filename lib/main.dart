@@ -29,7 +29,7 @@ void main() => l.capture<void>(
           final clock = Stopwatch()..start();
           var frames = 0;
           while (shouldRender && clock.elapsed.inSeconds < 15) {
-            // Render the funvas animation / frame in the render view.
+            // Render the next frame for each available view.
             binding
               ..scheduleFrame()
               ..handleBeginFrame(clock.elapsed)
