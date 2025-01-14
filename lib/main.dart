@@ -35,8 +35,6 @@ void main() => l.capture<void>(
               ..handleBeginFrame(clock.elapsed)
               ..handleDrawFrame();
             for (final view in dispatcher.views) render(view);
-            // TODO(plugfox): Make it possible to render at a fixed frame rate.
-            // Mike Matiunin <plugfox@gmail.com>, 14 January 2025
             await Future<void>.delayed(const Duration(milliseconds: 16)); // Rate limit to 60 FPS.
             frames++;
           }
@@ -62,8 +60,26 @@ Object _messageFormatting(LogMessage log) => '${_timeFormat(log.timestamp)} | ${
 /// Formats the time.
 String _timeFormat(DateTime time) => '${time.hour}:${time.minute.toString().padLeft(2, '0')}';
 
+/// Paints the canvas.
+void paint(Canvas canvas, Size size) {
+  canvas
+    ..save()
+    ..clipRect(Offset.zero & size);
+  final paint = Paint()..style = PaintingStyle.fill;
+  canvas
+    ..drawPaint(paint..color = const Color(0xFFFFFFFF))
+    ..drawCircle(
+      size.center(Offset.zero),
+      size.shortestSide / 2 - 16,
+      paint..color = const Color(0xFF000000),
+    )
+    ..restore();
+}
+
 // TODO(plugfox): Pass the delta time and frame number to the paint method.
 // Mike Matiunin <plugfox@gmail.com>, 14 January 2025
+
+/// Renders the view.
 void render(ui.FlutterView view) {
   // Получаем информацию о размерах экрана
   final windowSize = view.physicalSize;
@@ -85,24 +101,10 @@ void render(ui.FlutterView view) {
   // Создаем сцену
   final sceneBuilder = ui.SceneBuilder()
     ..pushClipRect(rect) // Обрезаем всё за пределами доски
+    //..pushTransform(Float64List.fromList([1, 0, 0, 0, 1, 0, 0, 0, 1])) // Не трансформируем
     ..pop();
   final scene = rootLayer.buildScene(sceneBuilder);
 
   // Отправляем сцену во вьюху
   view.render(scene);
-}
-
-void paint(Canvas canvas, Size size) {
-  canvas
-    ..save()
-    ..clipRect(Offset.zero & size);
-  final paint = Paint()..style = PaintingStyle.fill;
-  canvas
-    ..drawPaint(paint..color = const Color(0xFFFFFFFF))
-    ..drawCircle(
-      size.center(Offset.zero),
-      size.shortestSide / 2 - 16,
-      paint..color = const Color(0xFF000000),
-    )
-    ..restore();
 }
