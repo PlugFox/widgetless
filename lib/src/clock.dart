@@ -95,7 +95,7 @@ class Clock {
     // Add hands layer to root layer
     // Use TransformLayer to rotate hands
     // Create layer for hands
-    final handsLayer = ui.PictureLayer(ui.Offset.zero & size);
+    final ui.Layer handsLayer;
     {
       final recorder = ui.PictureRecorder();
       final canvas = ui.Canvas(recorder);
@@ -153,7 +153,7 @@ class Clock {
       // Center dot
       canvas.drawCircle(center, 4, hourPaint);
 
-      handsLayer.picture = recorder.endRecording();
+      handsLayer = ui.PictureLayer(ui.Offset.zero & size)..picture = recorder.endRecording();
     }
 
     // Create scene
