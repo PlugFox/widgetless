@@ -11,7 +11,7 @@ base class _BindingBase = BindingBase
         ServicesBinding,
         PaintingBinding,
         SemanticsBinding,
-        RendererBinding /*, WidgetsBinding */;
+        RendererBinding /* , WidgetsBinding */;
 
 final class Binding extends _BindingBase {
   Binding._() : super();

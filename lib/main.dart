@@ -1,16 +1,32 @@
 import 'dart:async';
-import 'dart:io' as io;
 import 'dart:ui' as ui;
 
 import 'package:flutter/rendering.dart';
 import 'package:l/l.dart';
+import 'package:widgetless/src/clock.dart';
 import 'package:widgetless/src/rendering/binding.dart';
-import 'package:widgetless/src/util/env.dart';
 
 void main() => l.capture<void>(
       () => runZonedGuarded<void>(
         () async {
-          final env = Env();
+          final binding = Binding.instance..ensureVisualUpdate() /*  ..deferFirstFrame() */;
+          final view = binding.platformDispatcher.views.first;
+          final clock = Clock(view: view);
+          /* binding
+            ..scheduleFrame()
+            ..allowFirstFrame(); */
+
+          final stopwatch = Stopwatch()..start();
+          Timer.periodic(const Duration(seconds: 1), (_) {
+            // Render the next frame for each available view.
+            binding
+              ..scheduleFrame()
+              ..handleBeginFrame(stopwatch.elapsed)
+              ..handleDrawFrame();
+            clock.render();
+          });
+
+          /* final env = Env();
           final shouldRender = env.get<bool>('render') == true;
           final binding = Binding.instance
             /* ..attachRootWidget(rootWidget) */
@@ -42,9 +58,11 @@ void main() => l.capture<void>(
           l
             ..i('Rendered $frames frames in ${elapsed.inMilliseconds}ms')
             ..i('Average FPS: ${frames ~/ elapsed.inSeconds} frames per second');
-          io.exit(0);
+          io.exit(0); */
         },
-        l.e,
+        (error, stackTrace) {
+          l.e('An error occurred $error\n$stackTrace', stackTrace);
+        },
       ),
       const LogOptions(
         handlePrint: true,
