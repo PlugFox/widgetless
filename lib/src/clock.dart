@@ -10,9 +10,9 @@ class Clock {
   Clock({required ui.FlutterView view}) : _view = view;
 
   final ui.FlutterView _view;
-  ui.Size _size = ui.Size.zero;
   final ui.LayerHandle<ui.OffsetLayer> _faceLayer = ui.LayerHandle<ui.OffsetLayer>();
   ui.Picture? _facePicture;
+  ui.Size _size = ui.Size.zero;
 
   void _createFacePicture(ui.Size size) {
     final paint = ui.Paint()
