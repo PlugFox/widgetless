@@ -84,6 +84,7 @@ class Clock {
     )..append(pictureLayer);
 
     // Add hands layer to root layer
+    // Use transform layer to rotate hands
     // ...
 
     // Create scene
