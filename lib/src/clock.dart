@@ -46,11 +46,19 @@ class Clock {
     // Draw hour marks
     for (var i = 0; i < 12; i++) {
       final angle = (i * 30) * math.pi / 180;
-      final markerStart =
-          ui.Offset(center.dx + (radius - 15) * math.cos(angle), center.dy + (radius - 15) * math.sin(angle));
-      final markerEnd = ui.Offset(center.dx + radius * math.cos(angle), center.dy + radius * math.sin(angle));
+      final markerStart = ui.Offset(
+        center.dx + (radius - 15) * math.cos(angle),
+        center.dy + (radius - 15) * math.sin(angle),
+      );
+      final markerEnd = ui.Offset(
+        center.dx + radius * math.cos(angle),
+        center.dy + radius * math.sin(angle),
+      );
 
       canvas.drawLine(markerStart, markerEnd, borderPaint);
+
+      // TODO(plugfox): Add text
+      // Mike Matiunin <plugfox@gmail.com>, 16 January 2025
     }
 
     canvas.restore();
@@ -101,33 +109,45 @@ class Clock {
       final hourPaint = ui.Paint()
         ..color = const ui.Color(0xFF000000)
         ..strokeWidth = 4.0
-        ..style = ui.PaintingStyle.stroke;
+        ..style = ui.PaintingStyle.stroke
+        ..filterQuality = ui.FilterQuality.none
+        ..isAntiAlias = true;
 
       final hourAngle = (now.hour % 12 + now.minute / 60) * 30 * math.pi / 180;
-      final hourHand =
-          ui.Offset(center.dx + (radius * 0.5) * math.sin(hourAngle), center.dy - (radius * 0.5) * math.cos(hourAngle));
+      final hourHand = ui.Offset(
+        center.dx + (radius * 0.5) * math.sin(hourAngle),
+        center.dy - (radius * 0.5) * math.cos(hourAngle),
+      );
       canvas.drawLine(center, hourHand, hourPaint);
 
       // Minute hand
       final minutePaint = ui.Paint()
         ..color = const ui.Color(0xFF000000)
         ..strokeWidth = 3.0
-        ..style = ui.PaintingStyle.stroke;
+        ..style = ui.PaintingStyle.stroke
+        ..filterQuality = ui.FilterQuality.none
+        ..isAntiAlias = true;
 
       final minuteAngle = (now.minute + now.second / 60) * 6 * math.pi / 180;
       final minuteHand = ui.Offset(
-          center.dx + (radius * 0.7) * math.sin(minuteAngle), center.dy - (radius * 0.7) * math.cos(minuteAngle));
+        center.dx + (radius * 0.7) * math.sin(minuteAngle),
+        center.dy - (radius * 0.7) * math.cos(minuteAngle),
+      );
       canvas.drawLine(center, minuteHand, minutePaint);
 
       // Second hand
       final secondPaint = ui.Paint()
         ..color = const ui.Color(0xFFFF0000)
         ..strokeWidth = 1.5
-        ..style = ui.PaintingStyle.stroke;
+        ..style = ui.PaintingStyle.stroke
+        ..filterQuality = ui.FilterQuality.none
+        ..isAntiAlias = true;
 
       final secondAngle = now.second * 6 * math.pi / 180;
       final secondHand = ui.Offset(
-          center.dx + (radius * 0.8) * math.sin(secondAngle), center.dy - (radius * 0.8) * math.cos(secondAngle));
+        center.dx + (radius * 0.8) * math.sin(secondAngle),
+        center.dy - (radius * 0.8) * math.cos(secondAngle),
+      );
       canvas.drawLine(center, secondHand, secondPaint);
 
       // Center dot
