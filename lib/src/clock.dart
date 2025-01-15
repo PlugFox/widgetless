@@ -68,13 +68,13 @@ class Clock {
   void render() {
     final view = _view;
     final windowSize = view.physicalSize;
-    //final pixelRatio = view.devicePixelRatio;
-    //final logicalSize = windowSize / pixelRatio;
+    /* final pixelRatio = view.devicePixelRatio;
+    final logicalSize = windowSize / pixelRatio; */
 
     // Relayout if size changed
     if (_size != windowSize) {
       l.i('Size changed: $_size -> $windowSize');
-      _size = windowSize; // logicalSize;
+      _size = windowSize;
       _facePicture?.dispose();
       _facePicture = null;
       _createFacePicture(windowSize);
@@ -82,7 +82,7 @@ class Clock {
     final size = _size;
 
     // Create picture layer
-    final pictureLayer = ui.PictureLayer(ui.Offset.zero & windowSize)
+    final pictureLayer = ui.PictureLayer(ui.Offset.zero & size)
       ..isComplexHint = true
       ..willChangeHint = false
       ..picture = _facePicture!;
@@ -169,10 +169,8 @@ class Clock {
     // Add root layer to scene
     rootLayer.addToScene(sceneBuilder);
 
-    //_paint(logicalSize);
-
     final scene = sceneBuilder.build();
-    _view.render(scene);
+    _view.render(scene, size: windowSize);
   }
 
   void dispose() {
