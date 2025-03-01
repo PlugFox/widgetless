@@ -73,7 +73,7 @@ dependencies:
 
   # Utility
   collection: any
-  async: any
+  async: 2.12.0
   path: any
   convert: any
   path_provider: ^2.1.4
