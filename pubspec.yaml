@@ -72,7 +72,7 @@ dependencies:
   meta: any
 
   # Utility
-  collection: any
+  collection: 1.19.1
   async: any
   path: any
   convert: any
