@@ -74,7 +74,7 @@ dependencies:
   # Utility
   collection: any
   async: any
-  path: any
+  path: 1.9.1
   convert: any
   path_provider: ^2.1.4
   platform_info: ^5.0.0
