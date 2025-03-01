@@ -69,7 +69,7 @@ dependencies:
 
   # Annotation
   #json_annotation: ^4.9.0
-  meta: any
+  meta: 1.16.0
 
   # Utility
   collection: any
